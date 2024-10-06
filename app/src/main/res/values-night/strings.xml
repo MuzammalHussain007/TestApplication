@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="subheadingText">You need to give permission for the camera,\n
+photo library, and location to take \n
+pictures or videos.</string>
+    <string name="ic_camera_heading_tv">Camera Access</string>
+    <string name="ic_camera_sub_heading_tv">The app needs access to your camera to take photos and add a stamp to them.</string>
+    <string name="ic_location_heading_tv">Location Access</string>
+    <string name="ic_location_sub_heading_tv">The app requires access to your location to display your current position or location.</string>
+    <string name="ic_gallery_heading_tv">Photo Library Access</string>
+    <string name="ic_gallery_sub_heading_tv">The app requires access to your photo library to view and browse your albums.</string>
+    <string name="continue_btn">Continue</string>
+    <string name="permission_required">Permission Required</string>
+</resources>
