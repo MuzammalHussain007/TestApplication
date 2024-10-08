@@ -101,6 +101,8 @@ class PermissionScreenActivity : AppCompatActivity() {
                         binding.icGallerySwitch.setImageResource(R.drawable.ic_disable_permission_switch)
                         binding.icGalleryLayout.isEnabled = false
                     }
+
+
                 }
             }
 
@@ -129,7 +131,7 @@ class PermissionScreenActivity : AppCompatActivity() {
 
     private fun clickListener() {
         binding.continueBtn.setOnClickListener {
-            navigateToActivity<HomeActivity>(clearStack = true)
+            navigateToActivity<ManualScreenActivity>(clearStack = true)
         }
         binding.icCameraSwitch.setOnClickListener {
             Log.e("innerLayout", "clickListener:)")

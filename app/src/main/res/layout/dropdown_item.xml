@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/curved_background"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:padding="@dimen/_12sdp">
+
+    <TextView
+        android:id="@+id/dropdownText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Example Dropdown Text"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/redLine"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/darker_gray" />
+</LinearLayout>

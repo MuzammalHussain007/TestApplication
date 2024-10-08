@@ -1,0 +1,98 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="294dp"
+    android:height="159dp"
+    android:viewportWidth="294"
+    android:viewportHeight="159">
+  <path
+      android:pathData="M40,30L208,30A6,6 0,0 1,214 36L214,74A6,6 0,0 1,208 80L40,80A6,6 0,0 1,34 74L34,36A6,6 0,0 1,40 30z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M95,44L195,44A5,5 0,0 1,200 49L200,49A5,5 0,0 1,195 54L95,54A5,5 0,0 1,90 49L90,49A5,5 0,0 1,95 44z"
+      android:fillColor="#E8E4E4"/>
+  <path
+      android:pathData="M93,61L147,61A3,3 0,0 1,150 64L150,64A3,3 0,0 1,147 67L93,67A3,3 0,0 1,90 64L90,64A3,3 0,0 1,93 61z"
+      android:fillColor="#F4F2F2"/>
+  <path
+      android:pathData="M62,55m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"
+      android:fillColor="#FFE7E7"/>
+  <path
+      android:pathData="M62,55m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"
+      android:fillColor="#FFE7E7"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M62,52m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0"
+      android:fillColor="#FFCECE"/>
+  <path
+      android:pathData="M62,52m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M62,52m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M62,52m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M62,52m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M62,52m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M62,52m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M62,52m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M62,52m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M62,52m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
+      android:fillColor="#FF6A6A"/>
+  <path
+      android:pathData="M86,71L254,71A6,6 0,0 1,260 77L260,115A6,6 0,0 1,254 121L86,121A6,6 0,0 1,80 115L80,77A6,6 0,0 1,86 71z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M141,85L241,85A5,5 0,0 1,246 90L246,90A5,5 0,0 1,241 95L141,95A5,5 0,0 1,136 90L136,90A5,5 0,0 1,141 85z"
+      android:fillColor="#E8E4E4"/>
+  <path
+      android:pathData="M139,102L193,102A3,3 0,0 1,196 105L196,105A3,3 0,0 1,193 108L139,108A3,3 0,0 1,136 105L136,105A3,3 0,0 1,139 102z"
+      android:fillColor="#F4F2F2"/>
+  <path
+      android:pathData="M108,96m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"
+      android:fillColor="#F0FBDB"/>
+  <path
+      android:pathData="M108,96m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"
+      android:fillColor="#F0FBDB"
+      android:fillAlpha="0.3"/>
+  <path
+      android:pathData="M108,93m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0"
+      android:fillColor="#F4FFF0"/>
+  <path
+      android:pathData="M108,93m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M108,93m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M108,93m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"
+      android:fillColor="#E2F8DA"/>
+  <path
+      android:pathData="M108,93m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M108,93m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M108,93m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M108,93m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M108,93m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
+      android:fillColor="#FFB9B9"/>
+  <path
+      android:pathData="M108,93m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"
+      android:fillColor="#94CC83"/>
+</vector>

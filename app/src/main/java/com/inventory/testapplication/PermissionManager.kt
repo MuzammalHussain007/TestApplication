@@ -12,7 +12,7 @@ abstract class PermissionManager(private val activity: AppCompatActivity) {
 
     private lateinit var cameraPermissionLauncher: ActivityResultLauncher<String>
     private lateinit var galleryPermissionLauncher: ActivityResultLauncher<Array<String>>
-    private lateinit var locationPermissionLauncher: ActivityResultLauncher<String>
+    private lateinit var locationPermissionLauncher: ActivityResultLauncher<Array<String>>
 
     init {
         setupPermissionLaunchers()
@@ -52,7 +52,6 @@ abstract class PermissionManager(private val activity: AppCompatActivity) {
                     )
                 } else if (readMediaVisualUserSelectedGranted) {
                     // Handle partial access when only READ_MEDIA_VISUAL_USER_SELECTED is granted
-                 //   onPermissionGranted(PermissionType.GALLERY)
                     onPartialPermissionGranted(
                         PermissionType.GALLERY,
                         "Partial Access: Only READ_MEDIA_VISUAL_USER_SELECTED granted"
@@ -71,12 +70,15 @@ abstract class PermissionManager(private val activity: AppCompatActivity) {
         }
 
         locationPermissionLauncher = activity.registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted ->
-            if (isGranted) {
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            val fineLocationGranted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false
+            val coarseLocationGranted = permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false
+
+            if (fineLocationGranted || coarseLocationGranted) {
                 onPermissionGranted(PermissionType.LOCATION)
             } else {
-                onPermissionDenied(PermissionType.LOCATION,"Manifest.permission.ACCESS_FINE_LOCATION Denied")
+                onPermissionDenied(PermissionType.LOCATION,"Location permissions denied")
             }
         }
     }
@@ -138,7 +140,7 @@ abstract class PermissionManager(private val activity: AppCompatActivity) {
         }
     }
 
-    // Request Location permission
+    // Request Location permission (for both fine and coarse location)
     fun requestLocationPermission() {
         when {
             ContextCompat.checkSelfPermission(
@@ -148,8 +150,21 @@ abstract class PermissionManager(private val activity: AppCompatActivity) {
                 onPermissionGranted(PermissionType.LOCATION)
             }
 
+            ContextCompat.checkSelfPermission(
+                activity,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                onPermissionGranted(PermissionType.LOCATION)
+            }
+
             else -> {
-                locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+                // Request both fine and coarse location permissions
+                locationPermissionLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                )
             }
         }
     }

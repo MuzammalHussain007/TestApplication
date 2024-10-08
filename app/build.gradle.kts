@@ -64,6 +64,9 @@ dependencies {
     // Live Data
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
 
+    //
+    implementation ( "com.google.android.gms:play-services-location:21.0.1")
+
 
 
 
