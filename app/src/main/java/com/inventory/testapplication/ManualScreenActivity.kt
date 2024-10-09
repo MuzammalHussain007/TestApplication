@@ -28,7 +28,7 @@ class ManualScreenActivity : AppCompatActivity() {
     }
 
     private fun innit() {
-        showCustomBottomDialog(this)
+        //showCustomBottomDialog(this)
     }
 
     fun showCustomBottomDialog(context: Context) {

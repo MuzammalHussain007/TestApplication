@@ -65,97 +65,116 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/gray"
+        android:paddingHorizontal="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarLayout">
-
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/locationEmpty"
+        
+        
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_empty_image"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/emptyLocationText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_bold"
-            android:text="Add Manual Location"
-            android:textColor="@color/permissionSubTextColor"
-            android:textSize="@dimen/_16ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/locationEmpty" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_reg"
-            android:paddingHorizontal="@dimen/_52sdp"
-            android:text="Add your preferred location manually and put
-it as geo stamp on your phone"
-            android:gravity="center"
-            android:textColor="#777777"
-            android:textSize="@dimen/_10ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emptyLocationText" />
-
-
-
-
-       <!-- Add Semi Bold Font Family -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:paddingVertical="@dimen/_15sdp"
-            android:background="@drawable/round_corner_btn"
-            android:layout_marginBottom="@dimen/_24sdp"
-            android:layout_marginHorizontal="@dimen/_15sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="wrap_content">
 
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/AddButtonIcon"
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
-                android:src="@drawable/ic_add_location"
-                android:tint="@color/black"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_180sdp"
+                >
 
-                app:layout_constraintHorizontal_chainStyle="packed"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintEnd_toStartOf="@+id/addBtnText"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/addBtnText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_med"
-                android:text="Add Location"
-                android:textColor="@color/permissionSubTextColor"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/AddButtonIcon"
-                app:layout_constraintStart_toEndOf="@+id/AddButtonIcon"
-                app:layout_constraintTop_toTopOf="@+id/AddButtonIcon"
-               />
+                <include layout="@layout/custum_templete_two"
+                    android:id="@+id/custom_templete_two"/>
 
 
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/TempleteTwoCardControl"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    android:background="#EDEDED" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/TempleteTwoCardControl"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/Template_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Template 2"
+                        android:textColor="@color/permissionSubTextColor"
+                        android:textSize="@dimen/_14ssp"
+                        app:layout_constraintBottom_toTopOf="@+id/Template_two_sub_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/Template_two_sub_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_reg"
+                        android:text="Edit this template in your style"
+                        android:textColor="#777777"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Template_two" />
+
+
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/edit_templete_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semi_bold"
+                        android:text="Edit Template"
+                        android:paddingVertical="@dimen/_8sdp"
+                        android:paddingHorizontal="@dimen/_8sdp"
+                        android:background="@drawable/round_corner_btn"
+                        android:textColor="@color/permissionSubTextColor"
+                        android:textSize="@dimen/_14ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+        
+        
+        
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

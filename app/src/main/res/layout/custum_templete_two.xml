@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:id="@+id/appLabelTV"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+
+    android:paddingVertical="@dimen/_5sdp"
+    android:paddingHorizontal="@dimen/_12sdp"
+    android:background="@color/permissionSubTextColor"
+    android:layout_height="match_parent">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        app:layout_constraintTop_toTopOf="@+id/appNameTV"
+        android:layout_marginEnd="@dimen/_5sdp"
+        app:layout_constraintEnd_toStartOf="@+id/appNameTV"
+        app:layout_constraintBottom_toBottomOf="@+id/appNameTV"
+        android:src="@drawable/ic_app_logo"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_reg"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_125sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="@dimen/_8sdp"
+        android:background="@color/permissionSubTextColor"
+        android:paddingVertical="@dimen/_8sdp"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appLabelTV"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/CardViewWithMap"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.59">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="London Borough of Waltham Forest, United Kingdom"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:id="@+id/fullAddressTV"
+                android:fontFamily="@font/inter_reg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/LatTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="Lat : "
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fullAddressTV"
+                 />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/LatitudeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="14.73654"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintTop_toTopOf="@+id/LatTV"
+                app:layout_constraintBottom_toBottomOf="@+id/LatTV"
+                app:layout_constraintStart_toEndOf="@+id/LatTV"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/LongTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="Long : "
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="@+id/LatitudeTV"
+                app:layout_constraintBottom_toBottomOf="@+id/LatitudeTV"
+                app:layout_constraintStart_toEndOf="@+id/LatitudeTV"
+                />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/LongitudeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="14.73654"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/LongTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/LongTV"
+                app:layout_constraintTop_toTopOf="@+id/LongTV" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:id="@+id/MapCardView"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+
+                app:layout_constraintTop_toBottomOf="@+id/LatTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:cardCornerRadius="@dimen/_8sdp"
+                android:layout_height="0dp">
+
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/Verticaldivider"
+            app:layout_constraintStart_toEndOf="@+id/CardViewWithMap"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="#7C7C7C" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_2sdp"
+            android:id="@+id/tempOtherInfoView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Verticaldivider"
+            android:layout_height="0dp">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/TimeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="12:45 PM"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/DateTV"
+                app:layout_constraintTop_toTopOf="@+id/TimeTV"
+                app:layout_constraintBottom_toBottomOf="@+id/TimeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="24-09-2024"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintStart_toEndOf="@+id/TimeTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/TimeZoneTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="GMT +05:00"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/DateTV" />
+
+
+            <View
+                android:id="@+id/Horizontaldivider"
+                app:layout_constraintTop_toBottomOf="@+id/TimeZoneTV"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#7C7C7C" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/WindTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="Wind"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintTop_toBottomOf="@+id/Horizontaldivider"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+
+                 />
+            
+            
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_14sdp"
+                app:layout_constraintTop_toTopOf="@+id/WindTV"
+                app:layout_constraintBottom_toBottomOf="@+id/WindTV"
+                app:layout_constraintStart_toEndOf="@+id/WindTV"
+                android:layout_height="@dimen/_14sdp"
+                android:src="@drawable/ic_temp_wind"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:id="@+id/ic_temp_wind"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/WindDynamicTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="0 km/h"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ic_temp_wind"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_temp_wind"
+                app:layout_constraintStart_toEndOf="@+id/ic_temp_wind"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/Horizontaldivider"
+                app:layout_constraintHorizontal_bias="0.0"
+                />
+
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/HumidityTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="Humidity"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/WindTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+
+                />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_14sdp"
+                app:layout_constraintTop_toTopOf="@+id/HumidityTV"
+                app:layout_constraintBottom_toBottomOf="@+id/HumidityTV"
+                app:layout_constraintStart_toEndOf="@+id/HumidityTV"
+                android:layout_height="@dimen/_14sdp"
+                android:src="@drawable/ic_temp_humidity"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:id="@+id/ic_temp_humidity"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/HumidityDynamicTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="0 %"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ic_temp_humidity"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_temp_humidity"
+                app:layout_constraintStart_toEndOf="@+id/ic_temp_humidity"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/Horizontaldivider"
+                app:layout_constraintHorizontal_bias="0.0"
+                />
+
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/PressureTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="Pressure"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/HumidityTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+
+                />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_14sdp"
+                app:layout_constraintTop_toTopOf="@+id/PressureTV"
+                app:layout_constraintBottom_toBottomOf="@+id/PressureTV"
+                app:layout_constraintStart_toEndOf="@+id/PressureTV"
+                android:layout_height="@dimen/_14sdp"
+                android:src="@drawable/ic_temp_pressure"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:id="@+id/ic_temp_pressure"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/PressureDynamicTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="0 hpa"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ic_temp_pressure"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_temp_pressure"
+                app:layout_constraintStart_toEndOf="@+id/ic_temp_pressure"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintHorizontal_bias="0.0"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/CompassTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semi_bold"
+                android:text="Compass"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/PressureTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+
+                />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_14sdp"
+                app:layout_constraintTop_toTopOf="@+id/CompassTV"
+                app:layout_constraintBottom_toBottomOf="@+id/CompassTV"
+                app:layout_constraintStart_toEndOf="@+id/CompassTV"
+                android:layout_height="@dimen/_14sdp"
+                android:src="@drawable/ic_temp_compass"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:id="@+id/ic_temp_compass"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/CompassDynamicTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_reg"
+                android:text="0 hpa"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ic_temp_compass"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_temp_compass"
+                app:layout_constraintStart_toEndOf="@+id/ic_temp_compass"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintHorizontal_bias="0.0"
+                />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
