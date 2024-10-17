@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="60dp"
+    android:height="80dp"
+    android:viewportWidth="60"
+    android:viewportHeight="80">
+
+    <!-- Rounded top and pointed bottom -->
+  <!--  <path
+        android:fillColor="#000000"
+        android:pathData="M30,0
+                         C45,0 60,15 60,30
+                         C60,45 45,60 30,80
+                         C15,60 0,45 0,30
+                         C0,15 15,0 30,0 Z"/>-->
+
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M30,0
+                         C46,0 60,14 60,30
+                         C60,50 46,64 30,80
+                         C14,64 0,50 0,30
+                         C0,14 14,0 30,0 Z"/>
+
+
+
+</vector>

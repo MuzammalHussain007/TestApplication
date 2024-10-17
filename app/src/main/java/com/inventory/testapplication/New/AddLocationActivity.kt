@@ -1,10 +1,16 @@
 package com.inventory.testapplication.New
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.imageview.ShapeableImageView
 import com.inventory.testapplication.R
 import com.inventory.testapplication.databinding.ActivityAddLocationBinding
 import com.inventory.testapplication.databinding.CustomAddLocationBottomSheetBinding
@@ -29,4 +35,7 @@ class AddLocationActivity : AppCompatActivity() {
 
 
     }
+
+
+
 }

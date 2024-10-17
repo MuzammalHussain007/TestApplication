@@ -5,6 +5,12 @@
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogue</item>
 
+
+        <item name="popupMenuBackground">@drawable/popup_menu_background</item>
+
+
+
+
     </style>
 
     <style name="AppBottomSheetDialogue" parent="Theme.Design.BottomSheetDialog">
@@ -14,5 +20,19 @@
         parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/curved_background_bottom_sheet</item>
     </style>
+
+    <style name="RoundShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>  <!-- This makes the image fully round -->
+    </style>
+
+
+    <style name="RoundedPopupMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@drawable/popup_menu_background</item>
+        <!-- Optionally, you can also change the text color, size, etc. -->
+        <item name="android:textColor">@color/black</item> <!-- Text color -->
+    </style>
+
+
 
 </resources>

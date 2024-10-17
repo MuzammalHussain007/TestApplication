@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center">
+
+    <!-- Outer marker shape -->
+    <!--<View
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:background="@drawable/marker_shape"
+        android:layout_gravity="center"/>-->
+
+
+    <View
+      android:layout_width="60dp"
+      android:layout_height="70dp"
+      android:background="@drawable/image_with_out_yellow_dot"
+      android:layout_gravity="center"/>
+
+    <!-- Inner yellow dot -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:shapeAppearanceOverlay="@style/RoundShape"
+        android:src="@drawable/ic_map_1"
+        android:layout_gravity="center"
+        app:strokeColor="@color/yellow"
+        app:strokeWidth="@dimen/_2sdp"
+        android:background="@drawable/circle_shape"/>
+</FrameLayout>
