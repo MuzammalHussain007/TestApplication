@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/curved_background_bottom_sheet">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mapTypeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+
+            android:text="Manual Location"
+            android:textColor="@color/permissionSubTextColor"
+            android:textSize="@dimen/_22ssp"
+            app:layout_constraintBottom_toTopOf="@+id/mapTypeSubText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mapTypeSubText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_reg"
+            android:text="Add manual location and then\n save your location on map"
+            android:textAlignment="center"
+            android:textColor="@color/darkGray"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mapTypeText" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/TitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:text="Title"
+            android:textColor="@color/permissionSubTextColor"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mapTypeSubText" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/SubTitleEV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:background="@drawable/curved_et"
+            android:fontFamily="@font/inter_med"
+            android:hint="Add title here"
+            android:padding="@dimen/_12sdp"
+            android:textColor="@color/permissionSubTextColor"
+            android:textColorHint="#777777"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TitleTV" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/LatitudeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:text="Latitude"
+            android:textColor="@color/permissionSubTextColor"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SubTitleEV" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/LatitideEV"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:background="@drawable/curved_et"
+            android:fontFamily="@font/inter_med"
+            android:hint="Latitude"
+            android:padding="@dimen/_12sdp"
+            android:textColor="@color/permissionSubTextColor"
+            android:textColorHint="#777777"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toStartOf="@+id/LongitudeEV"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LatitudeTV"
+            app:layout_constraintWidth_percent="0.48" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/LongitudeEV"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="@drawable/curved_et"
+            android:fontFamily="@font/inter_med"
+            android:hint="Longitude"
+            android:padding="@dimen/_12sdp"
+            android:textColor="@color/permissionSubTextColor"
+            android:textColorHint="#777777"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="@+id/SubTitleEV"
+            app:layout_constraintStart_toEndOf="@+id/LatitideEV"
+            app:layout_constraintTop_toBottomOf="@+id/LatitudeTV"
+            app:layout_constraintWidth_percent="0.48" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/LongitudeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:text="Longitude"
+            android:textColor="@color/permissionSubTextColor"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/LongitudeEV"
+            app:layout_constraintTop_toBottomOf="@+id/SubTitleEV" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/LocationTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:text="Location"
+            android:textColor="@color/permissionSubTextColor"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LatitideEV" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/LocationEV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:background="@drawable/curved_et"
+            android:fontFamily="@font/inter_med"
+            android:hint="Location"
+            android:padding="@dimen/_12sdp"
+            android:textColor="@color/permissionSubTextColor"
+            android:textColorHint="#777777"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LocationTV" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/CityTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:text="City"
+            android:textColor="@color/permissionSubTextColor"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LocationEV" />
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/CountryTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:text="Province / Country"
+            android:textColor="@color/permissionSubTextColor"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="@id/ProvinceEV"
+
+            app:layout_constraintTop_toBottomOf="@+id/LocationEV" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/CityEV"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:background="@drawable/curved_et"
+            android:fontFamily="@font/inter_med"
+            android:hint="City"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="@dimen/_12sdp"
+            android:textColor="@color/permissionSubTextColor"
+            android:textColorHint="#777777"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toStartOf="@+id/ProvinceEV"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CityTV"
+            app:layout_constraintWidth_percent="0.48" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ProvinceEV"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="@drawable/curved_et"
+            android:fontFamily="@font/inter_med"
+            android:hint="Province / Country"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="@dimen/_12sdp"
+            android:textColor="@color/permissionSubTextColor"
+            android:textColorHint="#777777"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="@+id/LocationEV"
+
+            app:layout_constraintStart_toEndOf="@+id/CityEV"
+
+            app:layout_constraintTop_toBottomOf="@+id/CityTV"
+            app:layout_constraintWidth_percent="0.48" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

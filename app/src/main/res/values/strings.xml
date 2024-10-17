@@ -13,4 +13,8 @@ pictures or videos.</string>
     <string name="permission_required">Permission Required</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="normal_map">Normal Map</string>
+    <string name="SatelliteMap">Satellite Map</string>
+    <string name="Terrainmap">Terrain map</string>
+    <string name="HybridMap">Hybrid Map</string>
 </resources>

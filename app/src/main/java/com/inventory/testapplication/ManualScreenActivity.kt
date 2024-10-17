@@ -11,13 +11,16 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.inventory.testapplication.databinding.ActivityManualScreenBinding
 import com.inventory.testapplication.databinding.CustomDialogForDeleteBinding
 
 class ManualScreenActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityManualScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_manual_screen)
+        binding = ActivityManualScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -29,6 +32,7 @@ class ManualScreenActivity : AppCompatActivity() {
 
     private fun innit() {
         //showCustomBottomDialog(this)
+
     }
 
     fun showCustomBottomDialog(context: Context) {

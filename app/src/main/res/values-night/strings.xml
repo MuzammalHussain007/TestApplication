@@ -11,4 +11,8 @@ pictures or videos.</string>
     <string name="ic_gallery_sub_heading_tv">The app requires access to your photo library to view and browse your albums.</string>
     <string name="continue_btn">Continue</string>
     <string name="permission_required">Permission Required</string>
+    <string name="normal_map">Normal Map</string>
+    <string name="SatelliteMap">Satellite Map</string>
+    <string name="Terrainmap">Terrain map</string>
+    <string name="HybridMap">Hybrid Map</string>
 </resources>

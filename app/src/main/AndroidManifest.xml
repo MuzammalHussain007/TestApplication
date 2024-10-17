@@ -29,6 +29,21 @@
         android:theme="@style/Theme.TestApplication"
         tools:targetApi="31">
         <activity
+            android:name=".New.NewMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".New.AddLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".New.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".New.ImageOnMapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditTempleteScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".ManualScreenActivity"
             android:exported="false" />
         <activity
@@ -42,7 +57,7 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

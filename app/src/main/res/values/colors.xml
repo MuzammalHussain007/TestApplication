@@ -6,4 +6,5 @@
     <color name="yellow">#FFB81E</color>
     <color name="homeColor">#151718</color>
     <color name="permissionSubTextColor">#242627</color>
+    <color name="darkGray">#777777</color>
 </resources>

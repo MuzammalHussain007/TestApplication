@@ -3,5 +3,16 @@
     <style name="Base.Theme.TestApplication" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogue</item>
+
     </style>
+
+    <style name="AppBottomSheetDialogue" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModelStyle</item>
+    </style>
+    <style name="AppModelStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/curved_background_bottom_sheet</item>
+    </style>
+
 </resources>
