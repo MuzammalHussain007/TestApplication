@@ -18,7 +18,7 @@
     </style>
     <style name="AppModelStyle"
         parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/curved_background_bottom_sheet</item>
+        <item name="android:background">@drawable/curved_background_spinner</item>
     </style>
 
     <style name="RoundShape">
@@ -31,6 +31,12 @@
         <item name="android:popupBackground">@drawable/popup_menu_background</item>
         <!-- Optionally, you can also change the text color, size, etc. -->
         <item name="android:textColor">@color/black</item> <!-- Text color -->
+    </style>
+
+
+    <style name="CurvedImageViewShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/_12sdp</item> <!-- Adjust corner size as needed -->
     </style>
 
 

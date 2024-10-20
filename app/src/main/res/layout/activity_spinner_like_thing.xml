@@ -8,28 +8,40 @@
     tools:context=".New.SpinnerLikeThing">
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:padding="@dimen/_5sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Manual Location"
-        android:paddingVertical="@dimen/_10sdp"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+ <!--   android:layout_width="@dimen/_120sdp"-->
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/manualLocation"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_width="@dimen/_120sdp"
+        android:padding="@dimen/_7sdp"
+        android:background="@drawable/curved_background_spinner"
+        android:layout_height="@dimen/_30sdp"
+        android:text="Manual Location"
+        android:gravity="center"
+        android:textColor="@color/yellow"
+        android:textSize="@dimen/_12ssp"
+        app:fontFamily="@font/inter_med"
+        app:drawableTint="@color/white"
+        android:drawableEnd="@drawable/ic_not_collapse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <ImageView
-        android:layout_width="@dimen/_24sdp"
-        android:layout_height="@dimen/_24sdp"
-        app:layout_constraintTop_toTopOf="@+id/manualLocation"
-        android:src="@drawable/ic_collapse"
-        android:id="@+id/colapseImage"
-        app:layout_constraintBottom_toBottomOf="@+id/manualLocation"
-        app:layout_constraintStart_toEndOf="@+id/manualLocation"
-        app:tint="@color/black" />
 
 
 

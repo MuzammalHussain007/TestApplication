@@ -30,14 +30,15 @@
         tools:targetApi="31">
         <activity
             android:name=".New.SpinnerLikeThing"
-            android:exported="true" >
-
+            android:exported="false" />
+        <activity
+            android:name=".New.CameraActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".New.MarkerActivity"
@@ -63,11 +64,14 @@
         <activity
             android:name=".PermissionScreenActivity"
             android:exported="true">
-         <!--   <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".HomeActivity"

@@ -173,9 +173,10 @@
                     android:fontFamily="@font/inter_bold"
                     android:textSize="@dimen/_12ssp"/>
 
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    tools:listitem="@layout/custom_add_map_location"
+                    tools:listitem="@layout/custom_language"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/LanguageListRecyclerView"

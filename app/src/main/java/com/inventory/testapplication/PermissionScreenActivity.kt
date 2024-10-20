@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.inventory.testapplication.New.AddLocationActivity
+import com.inventory.testapplication.New.LanguageActivity
 import com.inventory.testapplication.databinding.ActivityMainBinding
 
 class PermissionScreenActivity : AppCompatActivity() {
@@ -132,7 +133,7 @@ class PermissionScreenActivity : AppCompatActivity() {
 
     private fun clickListener() {
         binding.continueBtn.setOnClickListener {
-            navigateToActivity<AddLocationActivity>(clearStack = true)
+            navigateToActivity<LanguageActivity>(clearStack = true)
         }
         binding.icCameraSwitch.setOnClickListener {
             Log.e("innerLayout", "clickListener:)")

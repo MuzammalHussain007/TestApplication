@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_menu_background"
+    android:paddingVertical="@dimen/_5sdp"
+    android:paddingHorizontal="@dimen/_14sdp">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/popupText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Auto Location"
+        android:textSize="@dimen/_12ssp"
+        android:gravity="start"
+        android:padding="@dimen/_5sdp"
+        android:fontFamily="@font/inter_med"
+        android:textColor="@color/white"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/permissionSubTextColor"
+        app:layout_constraintTop_toBottomOf="@+id/popupText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.9" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/popupText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manual Location"
+        android:textSize="@dimen/_12ssp"
+        app:fontFamily="@font/inter_med"
+        android:textColor="@color/white"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@+id/divider1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

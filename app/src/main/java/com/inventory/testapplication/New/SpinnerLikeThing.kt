@@ -1,7 +1,11 @@
 package com.inventory.testapplication.New
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.PopupWindow
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,47 +16,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.inventory.testapplication.R
 import com.inventory.testapplication.databinding.ActivitySpinnerLikeThingBinding
+import com.inventory.testapplication.databinding.PopupMenuBinding
 
 class SpinnerLikeThing : AppCompatActivity()  {
     private lateinit var binding: ActivitySpinnerLikeThingBinding
-
-    private fun showPopupMenu(view: View) {
-
-        val contextWrapper = ContextThemeWrapper(this, R.style.RoundedPopupMenu)
-
-        var  popupMenu = PopupMenu(contextWrapper, view)
-
-        // Inflate the menu resource
-        popupMenu.menuInflater.inflate(R.menu.menu, popupMenu.menu)
+    private var isPopupMenuOpen = false
 
 
-        // Set a click listener for menu items
-        popupMenu.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.home -> {
-                    // Handle Action One
-                    Toast.makeText(this, "Action One clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.title -> {
-                    // Handle Action Two
-                    Toast.makeText(this, "Action Two clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
 
-                else -> false
-            }
-        }
-
-        popupMenu.setOnDismissListener {
-
-            binding.colapseImage.setImageResource(R.drawable.ic_collapse)
-            Toast.makeText(this, "Popup closed", Toast.LENGTH_SHORT).show()
-        }
-
-        // Show the popup menu
-        popupMenu.show()
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -65,13 +36,58 @@ class SpinnerLikeThing : AppCompatActivity()  {
         }
 
         binding.manualLocation.setOnClickListener {
-            binding.colapseImage.setImageResource(R.drawable.ic_not_collapse)
-            showPopupMenu(it)
+
+
+            val drawable = ContextCompat.getDrawable(this, R.drawable.ic_collapse)
+            binding.manualLocation.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+
+
+         //   showPopupMenu(it)
+
+            showCustomPopup(it)
+        }
+
+    }
+
+
+    private fun showCustomPopup(anchorView: View) {
+        val bindingPopup = PopupMenuBinding.inflate(LayoutInflater.from(this))
+
+        val popupWindow = PopupWindow(
+            bindingPopup.root,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            true
+        )
+
+
+        bindingPopup.popupText.setOnClickListener {
+
+            binding.manualLocation.setText("Auto Location")
+
+            val drawable = ContextCompat.getDrawable(this, R.drawable.ic_not_collapse)
+            binding.manualLocation.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+            popupWindow.dismiss()
+        }
+
+        bindingPopup.popupText2.setOnClickListener {
+            binding.manualLocation.setText("Manual Location")
+
+            val drawable = ContextCompat.getDrawable(this, R.drawable.ic_not_collapse)
+            binding.manualLocation.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+
+
+
+            popupWindow.dismiss()
+        }
+
+        popupWindow.setOnDismissListener {
+            val drawable = ContextCompat.getDrawable(this, R.drawable.ic_not_collapse)
+            binding.manualLocation.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
         }
 
 
 
-
-
+        popupWindow.showAsDropDown(anchorView, 0, 10)
     }
 }
