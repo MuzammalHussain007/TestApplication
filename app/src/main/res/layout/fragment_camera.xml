@@ -51,7 +51,103 @@
 
 
 
+    <HorizontalScrollView
+        android:id="@+id/horizontal_scroll_view_main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:backgroundTint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
+        <LinearLayout
+            android:id="@+id/effectsViewsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/black"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/horizontal_scroll_view_main_cross_icon"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:padding="@dimen/_5sdp"
+
+                />
+
+            <ImageView
+                android:id="@+id/auto_effect_icon"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+
+                />
+
+            <ImageView
+                android:id="@+id/manual_effect_icon"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <ImageView
+                android:id="@+id/incandescent_effect_icon"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <ImageView
+                android:id="@+id/flourescent_effect_icon"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <ImageView
+                android:id="@+id/warm_effect_icon"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <ImageView
+                android:id="@+id/day_light_effect_icon"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <ImageView
+                android:id="@+id/cloudy_effect_icon"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <ImageView
+                android:id="@+id/day_light_effect_icon_2"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <ImageView
+                android:id="@+id/shade_effect_icon"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
 
 
 

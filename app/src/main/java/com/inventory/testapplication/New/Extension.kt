@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.media.Image
+import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
@@ -41,13 +42,22 @@ fun AppCompatActivity.setLightStatusBar() {
         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
         "captured_image_${System.currentTimeMillis()}.jpg")
 
-
     try {
         val outputStream = FileOutputStream(file)
         outputStream.use {
             it.write(bytes)
         }
+
+        MediaScannerConnection.scanFile(
+            context, // Replace 'context' with your Activity or Fragment's context
+            arrayOf(file.absolutePath),
+            null
+        ) { path, uri ->
+            Log.d("MediaScanner", "Image scanned successfully: $path")
+        }
+
         Log.d("CameraCapture", "Image saved to: ${file.absolutePath}")
+        Log.d("ImageSaveTag", "Image saved to: ${file.absolutePath}")
     } catch (e: IOException) {
         e.printStackTrace()
         Log.e("CameraCapture", "Failed to save image: ${e.message}")
@@ -82,6 +92,7 @@ fun AppCompatActivity.setLightStatusBar() {
             e.printStackTrace()
             Log.e("CameraCapture", "Failed to save image: ${e.message}")
         } finally {
+
             image.close()
         }
     }

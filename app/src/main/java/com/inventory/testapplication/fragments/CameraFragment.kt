@@ -2,9 +2,18 @@ package com.inventory.testapplication.fragments
 
 import android.Manifest
 import android.animation.AnimatorListenerAdapter
+import android.content.ContentValues
+import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.ImageFormat
+import android.graphics.Paint
+import android.graphics.PorterDuff
 import android.graphics.SurfaceTexture
+import android.graphics.drawable.ColorDrawable
 import android.hardware.SensorManager.getOrientation
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraCaptureSession
@@ -17,17 +26,21 @@ import android.hardware.camera2.TotalCaptureResult
 import android.media.AudioAttributes
 import android.media.Image
 import android.media.ImageReader
+import android.media.MediaScannerConnection
 import android.media.SoundPool
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.os.HandlerThread
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Surface
 import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -36,6 +49,10 @@ import com.inventory.testapplication.New.saveImageNewWay
 import com.inventory.testapplication.New.saveImageOldWay
 import com.inventory.testapplication.R
 import com.inventory.testapplication.databinding.FragmentCameraBinding
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.nio.ByteBuffer
 
 
 class CameraFragment() : Fragment(), CameraControllerListener {
@@ -104,12 +121,224 @@ class CameraFragment() : Fragment(), CameraControllerListener {
 
         binding.textureView.surfaceTextureListener = textureListener
 
+        innit()
+
         if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_GRANTED
         ) {
             openCamera()
         } else {
             requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 1001)
+        }
+    }
+
+    private fun innit() {
+        loadImageFromAssets(requireContext(), binding.horizontalScrollViewMainCrossIcon, "horizontal_scroll_view_main_cross_icon.png")
+        loadImageFromAssets(requireContext(), binding.autoEffectIcon, "auto_effect_icon.png")
+        loadImageFromAssets(requireContext(), binding.manualEffectIcon, "manual_effect_icon.png")
+        loadImageFromAssets(requireContext(), binding.incandescentEffectIcon, "incandescent_effect_icon.png")
+        loadImageFromAssets(requireContext(), binding.flourescentEffectIcon, "flourescent_effect_icon.png")
+        loadImageFromAssets(requireContext(), binding.warmEffectIcon, "warm_effect_icon.png")
+        loadImageFromAssets(requireContext(), binding.dayLightEffectIcon, "day_light_effect_icon.png")
+        loadImageFromAssets(requireContext(), binding.cloudyEffectIcon, "cloudy_effect_icon.png")
+        loadImageFromAssets(requireContext(), binding.dayLightEffectIcon2, "day_light_effect_icon_2.png")
+        loadImageFromAssets(requireContext(), binding.shadeEffectIcon, "shade_effect_icon.png")
+
+
+
+
+
+        binding.autoEffectIcon.setOnClickListener {
+
+            binding.autoEffectIcon.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY)
+           binding. manualEffectIcon.colorFilter = null
+            binding.incandescentEffectIcon.colorFilter = null
+            binding.flourescentEffectIcon.colorFilter = null
+
+            binding.warmEffectIcon.colorFilter = null
+            binding.dayLightEffectIcon.colorFilter = null
+            binding.cloudyEffectIcon.colorFilter = null
+            binding.dayLightEffectIcon2.colorFilter = null
+            binding.shadeEffectIcon.colorFilter = null
+
+            // Remove any color effect from the preview view
+            binding.textureView.foreground = null
+            // Save state
+            saveEffectState("autoEffectIcon", Color.RED, null)
+
+        }
+
+        binding.manualEffectIcon.setOnClickListener {
+
+            binding.manualEffectIcon.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY)
+            binding.autoEffectIcon.colorFilter = null
+            binding.incandescentEffectIcon.colorFilter = null
+            binding.flourescentEffectIcon.colorFilter = null
+            binding.warmEffectIcon.colorFilter = null
+           binding. dayLightEffectIcon.colorFilter = null
+           binding. cloudyEffectIcon.colorFilter = null
+           binding. dayLightEffectIcon2.colorFilter = null
+           binding. shadeEffectIcon.colorFilter = null
+
+            // Apply grayscale effect to the preview view
+            val overlayColor = ColorDrawable(Color.parseColor("#A0000020"))
+            binding.textureView.foreground = overlayColor
+
+            // Save state
+            saveEffectState("manualEffectIcon", Color.RED, Color.parseColor("#A0000020"))
+
+        }
+
+        binding.incandescentEffectIcon.setOnClickListener {
+
+           binding. incandescentEffectIcon.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY)
+           binding. autoEffectIcon.colorFilter = null
+           binding. manualEffectIcon.colorFilter = null
+           binding. flourescentEffectIcon.colorFilter = null
+           binding. warmEffectIcon.colorFilter = null
+           binding. dayLightEffectIcon.colorFilter = null
+          binding.  cloudyEffectIcon.colorFilter = null
+           binding. dayLightEffectIcon2.colorFilter = null
+           binding. shadeEffectIcon.colorFilter = null
+
+            val overlayColor = ColorDrawable(Color.parseColor("#90608080"))
+          binding.  textureView.foreground = overlayColor
+
+            saveEffectState("incandescentEffectIcon", Color.RED, Color.parseColor("#90608080"))
+        }
+
+        binding.flourescentEffectIcon.setOnClickListener {
+            binding.flourescentEffectIcon.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY)
+            binding.incandescentEffectIcon.colorFilter = null
+            binding.autoEffectIcon.colorFilter = null
+            binding.manualEffectIcon.colorFilter = null
+            binding.warmEffectIcon.colorFilter = null
+            binding.dayLightEffectIcon.colorFilter = null
+            binding.cloudyEffectIcon.colorFilter = null
+            binding.dayLightEffectIcon2.colorFilter = null
+            binding.shadeEffectIcon.colorFilter = null
+
+            val overlayColor = ColorDrawable(Color.parseColor("#40000000"))
+            binding.textureView.foreground = overlayColor
+
+
+
+        }
+
+        binding.warmEffectIcon.setOnClickListener {
+
+            binding.warmEffectIcon.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY)
+           binding. autoEffectIcon.colorFilter = null
+           binding. manualEffectIcon.colorFilter = null
+           binding. flourescentEffectIcon.colorFilter = null
+            binding.dayLightEffectIcon.colorFilter = null
+           binding. cloudyEffectIcon.colorFilter = null
+            binding.dayLightEffectIcon2.colorFilter = null
+           binding. shadeEffectIcon.colorFilter = null
+           binding. incandescentEffectIcon.colorFilter = null
+
+            val overlayColor = ColorDrawable(Color.parseColor("#90608080"))
+           binding. textureView.foreground = overlayColor
+
+            saveEffectState("warmEffectIcon", Color.RED, Color.parseColor("#90608080"))
+
+        }
+
+        binding.dayLightEffectIcon.setOnClickListener {
+
+           binding. dayLightEffectIcon.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY)
+           binding. incandescentEffectIcon.colorFilter = null
+           binding. autoEffectIcon.colorFilter = null
+           binding. manualEffectIcon.colorFilter = null
+           binding. flourescentEffectIcon.colorFilter = null
+           binding. cloudyEffectIcon.colorFilter = null
+           binding. dayLightEffectIcon2.colorFilter = null
+           binding. shadeEffectIcon.colorFilter = null
+           binding. warmEffectIcon.colorFilter = null
+
+           binding. textureView.foreground = null
+
+            saveEffectState("dayLightEffectIcon", Color.RED, null)
+
+        }
+
+        binding.cloudyEffectIcon.setOnClickListener {
+
+           binding. cloudyEffectIcon.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY)
+            binding.incandescentEffectIcon.colorFilter = null
+            binding.autoEffectIcon.colorFilter = null
+            binding.manualEffectIcon.colorFilter = null
+            binding.flourescentEffectIcon.colorFilter = null
+            binding.dayLightEffectIcon.colorFilter = null
+            binding.dayLightEffectIcon2.colorFilter = null
+            binding.shadeEffectIcon.colorFilter = null
+            binding.warmEffectIcon.colorFilter = null
+
+            val overlayColor = ColorDrawable(Color.parseColor("#40000000"))
+            binding.textureView.foreground = overlayColor
+
+            saveEffectState("cloudyEffectIcon", Color.RED, Color.parseColor("#40000000"))
+
+        }
+
+        binding.dayLightEffectIcon2.setOnClickListener {
+
+          binding.  dayLightEffectIcon2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY)
+          binding.  incandescentEffectIcon.colorFilter = null
+          binding.  autoEffectIcon.colorFilter = null
+          binding.  manualEffectIcon.colorFilter = null
+          binding.  flourescentEffectIcon.colorFilter = null
+          binding.  dayLightEffectIcon.colorFilter = null
+          binding.  cloudyEffectIcon.colorFilter = null
+          binding.  shadeEffectIcon.colorFilter = null
+          binding.  warmEffectIcon.colorFilter = null
+
+            val overlayColor = ColorDrawable(Color.parseColor("#40000030"))
+          binding.  textureView.foreground = overlayColor
+
+            saveEffectState("twiiLightEffectIcon", Color.RED, Color.parseColor("#40000030"))
+
+        }
+
+        binding.shadeEffectIcon.setOnClickListener {
+
+         binding.   shadeEffectIcon.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY)
+        binding.    incandescentEffectIcon.colorFilter = null
+        binding.    dayLightEffectIcon2.colorFilter = null
+        binding.    autoEffectIcon.colorFilter = null
+        binding.    manualEffectIcon.colorFilter = null
+        binding.    flourescentEffectIcon.colorFilter = null
+        binding.    dayLightEffectIcon.colorFilter = null
+        binding.    cloudyEffectIcon.colorFilter = null
+        binding.    warmEffectIcon.colorFilter = null
+
+            val overlayColor = ColorDrawable(Color.parseColor("#40000000"))
+         binding.   textureView.foreground = overlayColor
+
+            saveEffectState("shadeEffectIcon", Color.RED, Color.parseColor("#40000000"))
+
+        }
+    }
+
+    fun loadImageFromAssets(context: Context, imageView: ImageView, fileName: String) {
+        try {
+            // Access the asset manager
+            val assetManager = context.assets
+
+            // Open the image file from assets
+            val inputStream = assetManager.open(fileName)
+
+            // Convert the input stream to a Bitmap
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+
+            // Set the bitmap to the ImageView
+            imageView.setImageBitmap(bitmap)
+
+            // Close the input stream after use
+            inputStream.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Log.e("AssetsImageLoader", "Error loading image from assets: ${e.message}")
         }
     }
 
@@ -146,13 +375,19 @@ class CameraFragment() : Fragment(), CameraControllerListener {
 
     private fun startPreview(aspectRatio: String = "1:1") {
         try {
-
+            // Get the SurfaceTexture
             val texture = binding.textureView.surfaceTexture
+            if (texture == null) {
+                Log.e("CameraFragment", "SurfaceTexture is null")
+                return
+            }
 
-
+            // Get TextureView width and height
             var width = binding.textureView.width
             var height = binding.textureView.height
+            Log.d("CameraFragment", "TextureView size: width=$width, height=$height")
 
+            // Calculate new width and height based on the selected aspect ratio
             val (newWidth, newHeight) = when (aspectRatio) {
                 "1:1" -> {
                     val minSize = minOf(width, height)
@@ -169,42 +404,44 @@ class CameraFragment() : Fragment(), CameraControllerListener {
                 else -> Pair(width, height) // Full screen (default)
             }
 
-            texture!!.setDefaultBufferSize(newWidth, newHeight)
+            // Set new buffer size for the SurfaceTexture
+            texture.setDefaultBufferSize(newWidth, newHeight)
 
+            // Update layout parameters for TextureView
             binding.textureView.layoutParams.apply {
-                width = newWidth
-                height = newHeight
+                this.width = newWidth
+                this.height = newHeight
             }
 
+            // Ensure the layout updates happen on the UI thread
             requireActivity().runOnUiThread {
                 binding.textureView.requestLayout()
-
             }
 
-
+            // Create a surface for the preview
             val previewSurface = Surface(texture)
 
+            // Initialize the ImageReader
             setupImageReader(aspectRatio)
-            val imageSurface = imageReader.surface
+            val imageSurface = imageReader?.surface ?: run {
+                Log.e("CameraFragment", "ImageReader surface is null")
+                return
+            }
 
-
-
+            // Create the capture request for the camera preview
             captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
             captureRequestBuilder.addTarget(previewSurface)
 
-            //TODO Add SharedPreference
+            // Set autofocus mode
             captureRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
 
+            // Create the capture session
             cameraDevice.createCaptureSession(
                 listOf(previewSurface, imageSurface),
                 object : CameraCaptureSession.StateCallback() {
                     override fun onConfigured(session: CameraCaptureSession) {
                         cameraCaptureSession = session
-
-                            updatePreview()
-                            // Update your UI elements here if necessary
-
-
+                        updatePreview()
                     }
 
                     override fun onConfigureFailed(session: CameraCaptureSession) {
@@ -386,6 +623,11 @@ class CameraFragment() : Fragment(), CameraControllerListener {
                     ) {
                         super.onCaptureCompleted(session, request, result)
                         Log.d("CameraCapture", "Image captured")
+
+                       saveImageWithTag(binding.textureView,binding.CardViewWithMap)
+
+
+
                         playShutterSound()  //TODO SharedPreference
                         startPreview()
                     }
@@ -414,6 +656,7 @@ class CameraFragment() : Fragment(), CameraControllerListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             saveImageNewWay(image, requireContext())
         } else {
+            Log.d("ImageSaveTag", "saveImage: ")
             saveImageOldWay(image)
         }
     }
@@ -500,6 +743,250 @@ class CameraFragment() : Fragment(), CameraControllerListener {
 
         shutterSoundId = soundPool.load(requireContext(), R.raw.camera_shutter_6305, 1)
     }
+
+
+    private fun saveEffectState(iconId: String, color: Int?, overlayColor: Int?) {
+        val sharedPreferences = requireContext().getSharedPreferences("EffectState", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putInt("$iconId-color", color ?: -1)
+        editor.putInt("$iconId-overlayColor", overlayColor ?: -1)
+        editor.apply()
+    }
+
+    private fun restoreEffectState(iconId: String) {
+        val sharedPreferences = requireContext().getSharedPreferences("EffectState", Context.MODE_PRIVATE)
+        val color = sharedPreferences.getInt("$iconId-color", -1)
+        val overlayColor = sharedPreferences.getInt("$iconId-overlayColor", -1)
+
+        when (iconId) {
+            "autoEffectIcon" -> {
+              binding.autoEffectIcon.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                if (overlayColor != -1) {
+                    val overlay = ColorDrawable(overlayColor)
+                    binding.textureView.foreground = overlay
+                }
+            }
+
+            "manualEffectIcon" -> {
+              binding. manualEffectIcon.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                if (overlayColor != -1) {
+                    val overlay = ColorDrawable(overlayColor)
+                    binding.textureView.foreground = overlay
+                }
+
+            }
+
+            "incandescentEffectIcon" -> {
+                binding.  incandescentEffectIcon.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                if (overlayColor != -1) {
+                    val overlay = ColorDrawable(overlayColor)
+                    binding.textureView.foreground = overlay
+                }
+            }
+
+            "florescentEffectIcon" -> {
+                binding.    flourescentEffectIcon.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                if (overlayColor != -1) {
+                    val overlay = ColorDrawable(overlayColor)
+                    binding.textureView.foreground = overlay
+                }
+
+            }
+
+            "warmEffectIcon" -> {
+                binding.  warmEffectIcon.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                if (overlayColor != -1) {
+                    val overlay = ColorDrawable(overlayColor)
+                    binding.textureView.foreground = overlay
+                }
+            }
+
+            "dayLightEffectIcon" -> {
+                binding.   dayLightEffectIcon.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                if (overlayColor != -1) {
+                    val overlay = ColorDrawable(overlayColor)
+                    binding.textureView.foreground = overlay
+                }
+            }
+
+            "cloudyEffectIcon" -> {
+                binding.  cloudyEffectIcon.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                if (overlayColor != -1) {
+                    val overlay = ColorDrawable(overlayColor)
+                    binding.textureView.foreground = overlay
+                }
+            }
+
+            "twiiLightEffectIcon" -> {
+                binding.   dayLightEffectIcon2.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                if (overlayColor != -1) {
+                    val overlay = ColorDrawable(overlayColor)
+                    binding.textureView.foreground = overlay
+                }
+            }
+
+            "shadeEffectIcon" -> {
+                binding.  shadeEffectIcon.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                if (overlayColor != -1) {
+                    val overlay = ColorDrawable(overlayColor)
+                    binding.textureView.foreground = overlay
+                }
+            }
+
+        }
+    }
+
+    /*fun saveImageWithTag(textureView: TextureView, tagView: View) {
+        // Capture the bitmap from the TextureView
+        val capturedBitmap = captureBitmapFromTextureView(textureView)
+        capturedBitmap?.let { bitmap ->
+            // Create a mutable bitmap to draw the tag
+            val resultBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+            val canvas = Canvas(resultBitmap)
+
+            // Capture the tag view as bitmap
+            val tagBitmap = captureBitmapFromView(tagView)
+
+            // Calculate position to draw the tag on the original image
+            val tagPositionX = tagView.left.toFloat()
+            val tagPositionY = tagView.top.toFloat()
+
+            saveBitmapToFile(tagBitmap)
+            // Draw the tag on the canvas (i.e., over the original image)
+            canvas.drawBitmap(tagBitmap, tagPositionX, tagPositionY, null)
+
+            // Save the result (bitmap with tag)
+            saveBitmapToFile(resultBitmap)
+        }
+    }*/
+
+
+    fun saveImageWithTag(textureView: TextureView, tagView: View) {
+        // Capture the bitmap from the TextureView
+        val capturedBitmap = captureBitmapFromTextureView(textureView)
+        capturedBitmap?.let { bitmap ->
+            // Create a mutable bitmap to draw the tag
+            val resultBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+            val canvas = Canvas(resultBitmap)
+
+            // Capture the tag view as bitmap
+            val tagBitmap = captureBitmapFromView(tagView)
+
+            if (tagBitmap != null && tagBitmap.width > 0 && tagBitmap.height > 0) {
+                // Calculate position to draw the tag on the original image
+                val tagPositionX = tagView.x  // Use x for the absolute position
+                val tagPositionY = tagView.y  // Use y for the absolute position
+
+                // Draw the tag on the canvas (i.e., over the original image)
+                canvas.drawBitmap(tagBitmap, tagPositionX, tagPositionY, null)
+
+                // Save the result (bitmap with tag)
+                saveBitmapToFile(resultBitmap)
+            } else {
+                Log.e("ImageTag", "Tag bitmap is invalid or empty.")
+            }
+        }
+    }
+
+
+    private fun captureBitmapFromView(view: View): Bitmap? {
+        // Measure the view to ensure it has the correct size
+        view.measure(
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        view.layout(0, 0, view.measuredWidth, view.measuredHeight)
+
+        val width = view.measuredWidth
+        val height = view.measuredHeight
+
+        if (width <= 0 || height <= 0) {
+            Log.e("BitmapCapture", "View width or height is invalid: $width x $height")
+            return null
+        }
+
+        // Create a bitmap with the specified width and height
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+
+        // Draw the view onto the canvas
+        view.draw(canvas)
+
+        return bitmap
+    }
+
+
+    /*Work for Android below 10 */
+   /* // Capture the view (tag overlay) as a bitmap
+    fun captureBitmapFromView(view: View): Bitmap {
+        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        view.draw(canvas)
+        return bitmap
+    }*/
+
+    // Save the bitmap to file
+    /*fun saveBitmapToFile(bitmap: Bitmap) {
+        val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "tagged_image_${System.currentTimeMillis()}.jpg")
+        try {
+            val outputStream = FileOutputStream(file)
+            outputStream.use {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 90, it)
+            }
+            Log.d("ImageSave", "Image saved to: ${file.absolutePath}")
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Log.e("ImageSave", "Failed to save image: ${e.message}")
+        }
+    }*/
+
+
+    /*Android 10 and ABOVE Implementation*/
+
+    private fun saveBitmapToFile(bitmap: Bitmap) {
+        val contentValues = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "tagged_image_${System.currentTimeMillis()}.jpg")
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+            put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES) // For Android 10+
+        }
+
+        // Insert the image into the MediaStore
+        val uri = context?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+
+        uri?.let {
+            try {
+                // Open an output stream to the MediaStore URI
+                context?.contentResolver?.openOutputStream(it).use { outputStream ->
+                    if (outputStream != null) {
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
+                    }
+                }
+                Log.d("ImageSave", "Image saved to: $it")
+
+                // Notify the gallery about the new image
+                MediaScannerConnection.scanFile(context, arrayOf(it.toString()), null, null)
+            } catch (e: IOException) {
+                e.printStackTrace()
+                Log.e("ImageSave", "Failed to save image: ${e.message}")
+            }
+        } ?: run {
+            Log.e("ImageSave", "Failed to insert image into MediaStore.")
+        }
+    }
+
+
+    fun captureBitmapFromTextureView(textureView: TextureView): Bitmap? {
+        return if (textureView.isAvailable) {
+            textureView.bitmap // Capture the bitmap from the TextureView
+        } else {
+            null
+        }
+    }
+
+
+
+
+
 
 
 
