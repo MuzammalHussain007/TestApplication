@@ -12,6 +12,7 @@ import com.inventory.testapplication.fragments.CameraFragment
 
 interface CameraControllerListener {
     fun onFlipCamera()
+    fun onTorchLightOn(value : Int)
 
 }
 class CameraActivity : AppCompatActivity() {
@@ -37,7 +38,7 @@ class CameraActivity : AppCompatActivity() {
         binding.flipButton.setOnClickListener {
             val fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
             if (fragment is CameraControllerListener) {
-                fragment.onFlipCamera()
+                fragment.onTorchLightOn(4)
 
             }
         }

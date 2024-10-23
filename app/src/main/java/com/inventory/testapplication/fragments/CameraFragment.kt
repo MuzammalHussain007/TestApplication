@@ -36,6 +36,7 @@ import android.os.HandlerThread
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.Surface
 import android.view.TextureView
 import android.view.View
@@ -117,6 +118,7 @@ class CameraFragment() : Fragment(), CameraControllerListener {
         super.onViewCreated(view, savedInstanceState)
 
         innitSoundPool()
+        innitTextureViewTOuch()
         cameraManager = requireContext().getSystemService(CameraManager::class.java)
 
         binding.textureView.surfaceTextureListener = textureListener
@@ -130,6 +132,43 @@ class CameraFragment() : Fragment(), CameraControllerListener {
         } else {
             requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 1001)
         }
+    }
+
+    private fun innitTextureViewTOuch() {
+       binding.textureView.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                // Get touch coordinates
+                val touchX = event.x
+                val touchY = event.y
+
+                Log.d("moveImageViewToTouchCoordinates", "MotionEvent.ACTION_DOWN: $touchX ")
+                Log.d("moveImageViewToTouchCoordinates", "MotionEvent.ACTION_DOWN: $touchY ")
+
+
+                // Move the ImageView to the touch coordinates
+                moveImageViewToTouchCoordinates(touchX, touchY)
+                true // Indicate that the touch event has been handled
+            } else {
+                false
+            }
+        }
+    }
+
+    private fun moveImageViewToTouchCoordinates(touchX: Float, touchY: Float) {
+
+
+
+
+
+       binding.icFocusView.x = 0f
+        binding.icFocusView.y = 0f
+
+
+        Log.d("moveImageViewToTouchCoordinates", "moveImageViewToTouchCoordinates: X Position  ${binding.icFocusView.x} ")
+        Log.d("moveImageViewToTouchCoordinates", "moveImageViewToTouchCoordinates: Y position  ${binding.icFocusView.y} ")
+
+
+
     }
 
     private fun innit() {
@@ -373,7 +412,7 @@ class CameraFragment() : Fragment(), CameraControllerListener {
         }
     }
 
-    private fun startPreview(aspectRatio: String = "1:1") {
+    private fun startPreview(aspectRatio: String = "1:1",value: Int = 0 ) {
         try {
             // Get the SurfaceTexture
             val texture = binding.textureView.surfaceTexture
@@ -434,6 +473,22 @@ class CameraFragment() : Fragment(), CameraControllerListener {
 
             // Set autofocus mode
             captureRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
+
+
+            // This line is use for continues flash mode  it is use in StartPreview method
+
+            Log.d("destoryCurrentPreview", "destoryCurrentPreview: ")
+             // instead of value we use sharedPreference for flash mode
+            if (value==4)
+            {
+                Log.d("destoryCurrentPreview", "inside if Preview ")
+
+                captureRequestBuilder.set(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_TORCH)
+            }
+
+
+
+
 
             // Create the capture session
             cameraDevice.createCaptureSession(
@@ -539,6 +594,10 @@ class CameraFragment() : Fragment(), CameraControllerListener {
 
     }
 
+    override fun onTorchLightOn(value: Int) {
+        destoryCurrentPreview(value)
+    }
+
     private fun flipCamera() {
         isFrontCamera = !isFrontCamera
         cameraId = if (isFrontCamera) {
@@ -590,29 +649,45 @@ class CameraFragment() : Fragment(), CameraControllerListener {
         return characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE) ?: false
     }
 
+
+    fun destoryCurrentPreview(value: Int)
+    {
+        Log.d("destoryCurrentPreview", "destoryCurrentPreview: ")
+        try {
+            // Stop the current preview
+            cameraCaptureSession.stopRepeating()  // Stops the repeating preview request
+            cameraCaptureSession.abortCaptures()  // Aborts any capture that is in progress
+
+            // Restart the preview with updated settings
+            startPreview("1:1",value)
+        } catch (e: CameraAccessException) {
+            Log.e("CameraPreview", "Failed to restart preview", e)
+        }
+    }
+
     private fun captureImage() {
         try {
-
-            val captureBuilder =
-                cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
+            // Create capture request for still image
+            val captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
             val imageSurface = imageReader.surface
 
+            // Set the target where the image is captured
             captureBuilder.addTarget(imageSurface)
-            captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO)
 
-
+            // Set JPEG orientation based on device rotation
             val rotation = requireActivity().windowManager.defaultDisplay.rotation
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, getOrientation(rotation))
 
+            // Set the flash mode (includes handling of torch mode)
             setFlashModeForCapture(captureBuilder)
 
-
-            //TODO SharedPreference Auto Focus
+            // Set Auto-Focus (AF) trigger
             captureBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER, CaptureRequest.CONTROL_AF_TRIGGER_START)
 
+            // Set Auto-Focus mode for continuous picture taking
             captureBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
 
-
+            // Capture the image and handle the capture callback
             cameraCaptureSession.capture(
                 captureBuilder.build(),
                 object : CameraCaptureSession.CaptureCallback() {
@@ -624,11 +699,13 @@ class CameraFragment() : Fragment(), CameraControllerListener {
                         super.onCaptureCompleted(session, request, result)
                         Log.d("CameraCapture", "Image captured")
 
-                       saveImageWithTag(binding.textureView,binding.CardViewWithMap)
+                        // Save the image with the map overlay (or any additional functionality)
+                        saveImageWithTag(binding.textureView, binding.CardViewWithMap)
 
+                        // Play shutter sound (can be implemented based on preferences)
+                        // playShutterSound()  //TODO SharedPreference
 
-
-                        playShutterSound()  //TODO SharedPreference
+                        // Start the preview again
                         startPreview()
                     }
                 },
@@ -688,7 +765,7 @@ class CameraFragment() : Fragment(), CameraControllerListener {
 
     private fun setFlashModeForCapture(captureBuilder: CaptureRequest.Builder) {
         if (isFlashSupported()) {
-            when (2) {  // here preference value come   //TODO SharedPreference
+            when (4) {  // here preference value come   //TODO SharedPreference
                 1 -> {
                     captureBuilder.set(
                         CaptureRequest.CONTROL_AE_MODE,

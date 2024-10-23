@@ -34,13 +34,13 @@
         android:theme="@style/Theme.TestApplication"
         tools:targetApi="31">
         <activity
-            android:name=".New.CameraActivity"
+            android:name=".New.SensorActivity"
             android:exported="false" />
         <activity
             android:name=".New.SpinnerLikeThing"
             android:exported="false" />
         <activity
-            android:name=".New.SensorActivity"
+            android:name=".New.CameraActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
